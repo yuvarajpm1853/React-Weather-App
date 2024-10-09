@@ -12,18 +12,11 @@ import snowIcon from './assets/snowy-3.svg'
 import mistIcon from './assets/fog.svg'
 import windIcon from './assets/wind.svg'
 import humidityIcon from './assets/humidity.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-const WeatherDetails = ({city}) => {
-
-    const [icon, setIcon] = useState(thunderstormIcon)
-    const [temp, setTemp] = useState(0);
-    const [lat, setLat] = useState(0);
-    const [long, setLong] = useState(0);
-    const [country, setCountry] = useState("IN");
-    const [humidity, setHumidity] = useState(0);
-    const [windSpeed, setWindSpeed] = useState(0);
-
+const WeatherDetails = ({ city, loading, cityNotFound, icon, 
+    temp, lat, long, country, humidity, windSpeed }) => {
+ 
     return ( 
         <>
         <div className="image">
