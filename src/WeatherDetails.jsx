@@ -29,10 +29,10 @@ const WeatherDetails = ({city}) => {
         <div className="image">
             <img src={icon} alt="Weather Image" />
         </div>
-        <div className="temp">{temp}</div>
+        {/* pressed Alt hold and numbers 0176 */}
+        <div className="temp">{temp}°C</div>
         <div className="city">{city}</div>
         <div className="country">{country}</div>
-        <div className="temp">{temp}</div>
         <div className="cord">
             <div>
                 <span className="lat">latitude</span>
