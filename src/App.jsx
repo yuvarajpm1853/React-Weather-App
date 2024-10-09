@@ -24,31 +24,37 @@ function App() {
       setError("")
       setCityNotFound(false)
       let url = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=${api_key}&units=Metric`;
+      let data;
       try{
         let resp = await fetch(url);
-        let data = await resp.json();
+        data = await resp.json();
         if(data.cod == "404") {
           setCityNotFound(true);
           setLoading(false);
           return;
         }
-        setHumidity(data.main.humidity);
-        setWindSpeed(data.wind.speed);
-        setLong(data.coord.lon);
-        setLat(data.coord.lat);
-        setCountry(data.sys.country);
-        setTemp(Math.floor(data.main.temp));
-        setIcon(data.weather[0].icon);
-        setCity(data.name)
-        setCityNotFound(false);
-        setLoading(false);
-      }catch (err){
-        console.log("An error occured ", err.message);
+        if(data.cod == "200")
+          {setHumidity(data.main.humidity);
+            setWindSpeed(data.wind.speed);
+            setLong(data.coord.lon);
+            setLat(data.coord.lat);
+            setCountry(data.sys.country);
+            setTemp(Math.floor(data.main.temp));
+            setIcon(data.weather[0].icon);
+            setCity(data.name)
+            setCityNotFound(false);
+            setLoading(false);}
+      }catch(err){
+        console.error("An error occured ", err.message);
         setError(err.message)
       }
   }
   const handleEnter =(e) => {
     if(e.key=='Enter' && searchCity){
+      search()}
+  }
+  const handleClick =(e) => {
+    if(searchCity){
       search()}
   }
   return (
@@ -59,7 +65,7 @@ function App() {
   placeholder="Search city" value={searchCity} onChange={e=>setSearchCity(e.target.value)} 
   onKeyDown={handleEnter}/>
   <div className="search-icon">
-    <img src={searchIcon} alt="Search" onClick={searchCity && search}/>
+    <img src={searchIcon} alt="Search" onClick={handleClick}/>
     </div>
   </div>
    

@@ -15,7 +15,7 @@ import humidityIcon from './assets/humidity.svg'
 
 const WeatherDetails = ({ city, loading, cityNotFound, icon, 
     temp, lat, long, country, humidity, windSpeed }) => {
-        
+        // https://openweathermap.org/weather-conditions
     const weatherIconData= {
         "01d":clearDayIcon,
         "01n":clearNightIcon,
@@ -36,13 +36,10 @@ const WeatherDetails = ({ city, loading, cityNotFound, icon,
         "50d":mistIcon,
         "50n":mistIcon
     }
-    // icon => string . so , using [] 
-    // can use dot operator but here string
     let weatherIcon = weatherIconData[icon] || clearDayIcon;
     return ( 
         <>
         <div className="image">
-            {/* <img src={icon} alt="Weather Image" /> */}
             <img src={weatherIcon} alt="Weather Image" />
         </div>
         {/* pressed Alt hold and numbers 0176 */}
