@@ -2,13 +2,13 @@ import { useState } from 'react'
 import './App.css'
 import searchIcon from './assets/search.png'
 import WeatherDetails from './WeatherDetails';
-import thunderstormIcon from './assets/scattered-thunderstorms.svg'
 
 function App() {
-  const [city, setCity] = useState("Chennai");
+  const [searchCity, setSearchCity] = useState("");
+  const [city, setCity] = useState("");
   const [loading, setLoading] = useState(false);
   const [cityNotFound, setCityNotFound] = useState(false);
-  const [icon, setIcon] = useState(thunderstormIcon)
+  const [icon, setIcon] = useState("11n")
   const [temp, setTemp] = useState(0);
   const [lat, setLat] = useState(0);
   const [long, setLong] = useState(0);
@@ -18,7 +18,7 @@ function App() {
   let api_key= "58a64a8f9b4732f59f35f6736afd4fb2";
 
   const search = async () => {
-      let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}&units=Metric`;
+      let url = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=${api_key}&units=Metric`;
       try{
         let resp = await fetch(url);
         let data = await resp.json();
@@ -34,6 +34,8 @@ function App() {
         setLat(data.coord.lat);
         setCountry(data.sys.country);
         setTemp(Math.floor(data.main.temp));
+        setIcon(data.weather[0].icon);
+        setCity(data.name)
       }catch (err){
         console.log("An error occured ", err.message);
       }
@@ -47,7 +49,7 @@ function App() {
 <div className="container">
   <div className="input-container">  
   <input type="text" className="cityInput" 
-  placeholder="Search city" value={city} onChange={e=>setCity(e.target.value)} 
+  placeholder="Search city" value={searchCity} onChange={e=>setSearchCity(e.target.value)} 
   onKeyDown={handleEnter}/>
   {/* onKeyDown={(e)=>handleEnter(e)}/> */}
   {/* both are same */}

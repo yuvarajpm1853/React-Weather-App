@@ -12,15 +12,38 @@ import snowIcon from './assets/snowy-3.svg'
 import mistIcon from './assets/fog.svg'
 import windIcon from './assets/wind.svg'
 import humidityIcon from './assets/humidity.svg'
-import { useEffect, useState } from 'react'
 
 const WeatherDetails = ({ city, loading, cityNotFound, icon, 
     temp, lat, long, country, humidity, windSpeed }) => {
- 
+        
+    const weatherIconData= {
+        "01d":clearDayIcon,
+        "01n":clearNightIcon,
+        "02d":cloudyDayIcon,
+        "02n":cloudyNightIcon,
+        "03d":cloudyIcon,
+        "03n":cloudyIcon,
+        "04d":cloudyIcon,
+        "04n":cloudyIcon,
+        "09d":ShowerRainIcon,
+        "09n":ShowerRainIcon,
+        "10d":rainDayIcon,
+        "10n":rainNightIcon,
+        "11d":thunderstormIcon,
+        "11n":thunderstormIcon,
+        "13d":snowIcon,
+        "13n":snowIcon,
+        "50d":mistIcon,
+        "50n":mistIcon
+    }
+    // icon => string . so , using [] 
+    // can use dot operator but here string
+    let weatherIcon = weatherIconData[icon];
     return ( 
         <>
         <div className="image">
-            <img src={icon} alt="Weather Image" />
+            {/* <img src={icon} alt="Weather Image" /> */}
+            <img src={weatherIcon} alt="Weather Image" />
         </div>
         {/* pressed Alt hold and numbers 0176 */}
         <div className="temp">{temp}°C</div>
