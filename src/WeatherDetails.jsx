@@ -38,7 +38,7 @@ const WeatherDetails = ({ city, loading, cityNotFound, icon,
     }
     // icon => string . so , using [] 
     // can use dot operator but here string
-    let weatherIcon = weatherIconData[icon];
+    let weatherIcon = weatherIconData[icon] || clearDayIcon;
     return ( 
         <>
         <div className="image">
