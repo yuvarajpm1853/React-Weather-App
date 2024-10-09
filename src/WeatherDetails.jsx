@@ -21,8 +21,8 @@ const WeatherDetails = ({city}) => {
     const [lat, setLat] = useState(0);
     const [long, setLong] = useState(0);
     const [country, setCountry] = useState("IN");
-    const [humidity, setHumidity] = useState();
-    const [windSpeed, setWindSpeed] = useState();
+    const [humidity, setHumidity] = useState(0);
+    const [windSpeed, setWindSpeed] = useState(0);
 
     return ( 
         <>
@@ -35,12 +35,28 @@ const WeatherDetails = ({city}) => {
         <div className="country">{country}</div>
         <div className="cord">
             <div>
-                <span className="lat">latitude</span>
+                <span className="lat">Latitude</span>
                 <span>{lat}</span>
             </div>
             <div>
-                <span className="long">longitude</span>
+                <span className="long">Longitude</span>
                 <span>{long}</span>
+            </div>
+        </div>
+        <div className="data-container">
+            <div className="element">
+                <img src={humidityIcon} alt="Humidity Icon" className='icon'/>
+                <div className="data">
+                    <div className="humidity-percent">{humidity}%</div>
+                    <div className="text">Humidity</div>
+                </div>
+            </div>
+            <div className="element">
+                <img src={windIcon} alt="Wind Icon" className='icon'/>
+                <div className="data">
+                    <div className="wind-percent">{windSpeed} km/hr</div>
+                    <div className="text">Wind Speed</div>
+                </div>
             </div>
         </div>
 
